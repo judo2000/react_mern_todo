@@ -19,12 +19,6 @@ interface IncomingBody {
 }
 
 app.post("/create", async (req, res) => {
-  // const newNote = new Note<NoteDocument>({
-  //   title: (req.body as IncomingBody).title,
-  //   description: (req.body as IncomingBody).description,
-  // });
-
-  // await newNote.save();
   await Note.create<NoteDocument>({
     title: (req.body as IncomingBody).title,
     description: (req.body as IncomingBody).description,
@@ -34,12 +28,25 @@ app.post("/create", async (req, res) => {
 
 app.patch("/:noteId", async (req, res) => {
   const { noteId } = req.params;
-  const note = await Note.findById(noteId);
-  if (!note) return res.json({ error: "Note not fou nd!" });
+  // const note = await Note.findById(noteId);
+  // if (!note) return res.json({ error: "Note not fou nd!" });
 
   const { title, description } = req.body as IncomingBody;
-  if (title) note.title = title;
-  if (description) note.description = description;
+  // if (title) note.title = title;
+  // if (description) note.description = description;
+
+  const note = await Note.findByIdAndUpdate(
+    noteId,
+    {
+      title,
+      description,
+    },
+    {
+      new: true,
+    }
+  );
+
+  if (!note) return res.json({ error: "Note not fou nd!" });
 
   await note.save();
 
