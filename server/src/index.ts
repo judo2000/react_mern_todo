@@ -53,6 +53,16 @@ app.patch("/:noteId", async (req, res) => {
   res.json({ note });
 });
 
+app.delete("/:noteId", async (req, res) => {
+  const { noteId } = req.params;
+
+  const removedNote = await Note.findByIdAndDelete(noteId);
+
+  if (!removedNote) res.json({ message: "Note not found!" });
+
+  res.json({ message: "Note removed successfully!" });
+});
+
 app.listen(8000, () => {
   console.log("listening");
 });
