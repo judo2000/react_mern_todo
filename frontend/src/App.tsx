@@ -1,7 +1,13 @@
 const App = () => {
   return (
-    <div>
-      <h1>Hello World</h1>
+    <div className="container">
+      <h1>Note Application</h1>
+      <div>
+        <input type="text" className="input" placeholder="Title" />
+      </div>
+      <div>
+        <textarea className="textarea" placeholder="Description" />
+      </div>
     </div>
   );
 };
