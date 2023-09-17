@@ -1,3 +1,5 @@
+import NoteItem from "./components/NoteItem";
+
 const App = () => {
   return (
     <div className="max-w-3xl mx-auto space-y-6">
@@ -24,26 +26,9 @@ const App = () => {
       </div>
       {/* Note Items*/}
 
-      <div>
-        <p className="font-semibold mb-4 text-gray-700 text-lg">
-          Lorem ipsum dolor sit amet.
-        </p>
-        <div className="space-x-4">
-          <button className="bg-blue-500 text-white p-2 rounded">View</button>
-          <button className="bg-gray-700 text-white p-2 rounded">Edit</button>
-          <button className="bg-red-500 text-white p-2 rounded">View</button>
-        </div>
-      </div>
-      <div>
-        <p className="font-semibold mb-4 text-gray-700 text-lg">
-          Lorem ipsum dolor sit amet.
-        </p>
-        <div className="space-x-4">
-          <button className="bg-blue-500 text-white p-2 rounded">View</button>
-          <button className="bg-gray-700 text-white p-2 rounded">Edit</button>
-          <button className="bg-red-500 text-white p-2 rounded">View</button>
-        </div>
-      </div>
+      <NoteItem title="My first reusable component" />
+      <NoteItem title="My second reusable component" />
+      <NoteItem title="My third reusable component" />
     </div>
   );
 };
