@@ -7,11 +7,17 @@ interface IncomingBody {
 }
 
 export const create: RequestHandler = async (req, res) => {
-  await Note.create<NoteDocument>({
+  const newNote = await Note.create<NoteDocument>({
     title: (req.body as IncomingBody).title,
     description: (req.body as IncomingBody).description,
   });
-  res.json({ message: "Note created!" });
+  res.json({
+    note: {
+      id: newNote._id,
+      title: newNote.title,
+      description: newNote.description,
+    },
+  });
 };
 
 export const updateSingleNote: RequestHandler = async (req, res) => {

@@ -6,6 +6,14 @@ const App = () => {
   // const [title, setTitle] = useState("");
   // const [description, setDescription] = useState("");
 
+  const [notes, setNotes] = useState<
+    {
+      id: string;
+      title: string;
+      description?: string;
+    }[]
+  >([]);
+
   const [values, setValues] = useState({
     title: "",
     description: "",
@@ -30,7 +38,10 @@ const App = () => {
               description: values.description,
             }
           );
-          console.log(data);
+          if (data.note) {
+            setNotes([data.note, ...notes]);
+            setValues({ title: "", description: "" });
+          }
         }}
         className="bg-white shadow-lg rounded p-5 space-y-6"
       >
@@ -61,10 +72,9 @@ const App = () => {
         </div>
       </form>
       {/* Note Items*/}
-
-      <NoteItem title="My first reusable component" />
-      <NoteItem title="My second reusable component" />
-      <NoteItem title="My third reusable component" />
+      {notes.map((note) => {
+        return <NoteItem key={note._id} title={note.title} />;
+      })}
     </div>
   );
 };
