@@ -1,15 +1,24 @@
+import React, { useState } from "react";
 import NoteItem from "./components/NoteItem";
 
 const App = () => {
+  const [title, setTitle] = useState("");
+
   return (
     <div className="max-w-3xl mx-auto space-y-6">
       <div className="bg-white shadow-lg rounded p-5 space-y-6">
         <h1 className="font-semibold text-2xl text-center">Note Application</h1>
         <div>
+          {title.trim() && title.length < 3 ? (
+            <p className="text-red-500">Title is too short</p>
+          ) : null}
           <input
             type="text"
             className="w-full border-b-2 border-gray-700 outline-none"
             placeholder="Title"
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
           />
         </div>
         <div>
