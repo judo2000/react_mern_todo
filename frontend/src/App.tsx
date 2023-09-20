@@ -1,4 +1,4 @@
-import React, { useState, ChangeEventHandler } from "react";
+import React, { useState, ChangeEventHandler, useEffect } from "react";
 import NoteItem from "./components/NoteItem";
 import axios from "axios";
 
@@ -25,6 +25,14 @@ const App = () => {
     const { name, value } = target;
     setValues({ ...values, [name]: value });
   };
+
+  useEffect(() => {
+    const getAllNotes = async () => {
+      const { data } = await axios("http://localhost:8000/note");
+      setNotes(data.notes);
+    };
+    getAllNotes();
+  }, []);
 
   return (
     <div className="max-w-3xl mx-auto space-y-6">
@@ -73,7 +81,7 @@ const App = () => {
       </form>
       {/* Note Items*/}
       {notes.map((note) => {
-        return <NoteItem key={note._id} title={note.title} />;
+        return <NoteItem key={note.id} title={note.title} />;
       })}
     </div>
   );
