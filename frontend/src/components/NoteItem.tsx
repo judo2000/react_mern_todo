@@ -5,7 +5,7 @@ interface Props {
   title?: string;
 }
 
-const NoteItem: FC<Props> = ({ title }) => {
+const NoteItem: FC<Props> = ({ title, onEditClick }) => {
   return (
     <div>
       <p className="font-semibold mb-4 text-gray-700 text-lg">{title}</p>
@@ -18,11 +18,10 @@ const NoteItem: FC<Props> = ({ title }) => {
           }}
         />
         <AppButton
+          onClick={onEditClick}
           title="Edit"
           type="normal"
-          onClick={() => {
-            console.log("Editing Note");
-          }}
+          onClick={onEditClick}
         />
         <AppButton
           title="Delete"

@@ -11,6 +11,7 @@ export const create: RequestHandler = async (req, res) => {
     title: (req.body as IncomingBody).title,
     description: (req.body as IncomingBody).description,
   });
+
   res.json({
     note: {
       id: newNote._id,
@@ -22,7 +23,7 @@ export const create: RequestHandler = async (req, res) => {
 
 export const updateSingleNote: RequestHandler = async (req, res) => {
   const { noteId } = req.params;
-
+  console.log(req.params.noteId);
   const { title, description } = req.body as IncomingBody;
 
   const note = await Note.findByIdAndUpdate(
