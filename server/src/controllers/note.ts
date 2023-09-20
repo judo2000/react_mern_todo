@@ -23,7 +23,7 @@ export const create: RequestHandler = async (req, res) => {
 
 export const updateSingleNote: RequestHandler = async (req, res) => {
   const { noteId } = req.params;
-  console.log(req.params.noteId);
+
   const { title, description } = req.body as IncomingBody;
 
   const note = await Note.findByIdAndUpdate(
@@ -41,7 +41,9 @@ export const updateSingleNote: RequestHandler = async (req, res) => {
 
   await note.save();
 
-  res.json({ note });
+  res.json({
+    note: { id: note._id, title: note.title, description: note.description },
+  });
 };
 
 export const deleteNote: RequestHandler = async (req, res) => {

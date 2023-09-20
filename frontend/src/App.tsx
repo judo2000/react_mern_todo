@@ -51,7 +51,15 @@ const App = () => {
                 description: values.description,
               }
             );
-            console.log(data.note);
+
+            const updatedNotes = notes.map((note) => {
+              if (note.id === selectedNoteId) {
+                note.title = data.note.title;
+                note.description = data.note.description;
+              }
+              return note;
+            });
+            setNotes([...updatedNotes]);
             return;
           }
           const { data } = await axios.post(
