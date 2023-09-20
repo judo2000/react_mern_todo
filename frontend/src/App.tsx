@@ -60,6 +60,7 @@ const App = () => {
               return note;
             });
             setNotes([...updatedNotes]);
+            setValues({ title: "", description: "" });
             return;
           }
           const { data } = await axios.post(
