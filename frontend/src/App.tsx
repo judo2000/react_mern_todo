@@ -30,7 +30,7 @@ const App = () => {
 
   useEffect(() => {
     const getAllNotes = async () => {
-      const { data } = await axios.get("http://localhost:8000/note");
+      const { data } = await axios("http://localhost:8000/note");
       setNotes(data.notes);
     };
     getAllNotes();
@@ -57,6 +57,7 @@ const App = () => {
                 note.title = data.note.title;
                 note.description = data.note.description;
               }
+              setSelectedNoteId("");
               return note;
             });
             setNotes([...updatedNotes]);
@@ -110,11 +111,22 @@ const App = () => {
             onEditClick={() => {
               console.log(note.id);
               setSelectedNoteId(note.id);
-
               setValues({
                 title: note.title,
                 description: note.description || "",
               });
+            }}
+            onDeleteClick={async () => {
+              const result = confirm("Are you sure?");
+              if (result) {
+                // delete
+                await axios.delete(`http://localhost:8000/note/${note.id}`);
+                // const updatedNotes = notes.filter(({ id }) => {
+                //   if (id !== note.id) {
+                //     return note;
+                //   }
+                // });
+              }
             }}
             key={note.id}
             title={note.title}

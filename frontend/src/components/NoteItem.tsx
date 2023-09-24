@@ -3,9 +3,11 @@ import AppButton from "./AppButton";
 
 interface Props {
   title?: string;
+  onEditClick?(): void;
+  onDeleteClick?(): void;
 }
 
-const NoteItem: FC<Props> = ({ title, onEditClick }) => {
+const NoteItem: FC<Props> = ({ title, onEditClick, onDeleteClick }) => {
   return (
     <div>
       <p className="font-semibold mb-4 text-gray-700 text-lg">{title}</p>
@@ -17,19 +19,8 @@ const NoteItem: FC<Props> = ({ title, onEditClick }) => {
             console.log("Viewing Note");
           }}
         />
-        <AppButton
-          onClick={onEditClick}
-          title="Edit"
-          type="normal"
-          onClick={onEditClick}
-        />
-        <AppButton
-          title="Delete"
-          type="danger"
-          onClick={() => {
-            console.log("Deleting Note");
-          }}
-        />
+        <AppButton onClick={onEditClick} title="Edit" type="normal" />
+        <AppButton title="Delete" type="danger" onClick={onDeleteClick} />
       </div>
     </div>
   );
