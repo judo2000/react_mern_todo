@@ -19,7 +19,7 @@ const NoteItem: FC<Props> = ({
   return (
     <div>
       <p className="font-semibold mb-4 text-gray-700 text-lg">{title}</p>
-      {description ? <p className="ml-2 mt-2">{description}</p> : null}
+      {description ? <p className="ml-2 py-2 text-lg">{description}</p> : null}
       <div className="space-x-4">
         <AppButton title="View" type="regular" onClick={onViewClick} />
         <AppButton onClick={onEditClick} title="Edit" type="normal" />
