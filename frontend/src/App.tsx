@@ -122,10 +122,13 @@ const App = () => {
                 // delete
                 await axios.delete(`http://localhost:8000/note/${note.id}`);
                 // const updatedNotes = notes.filter(({ id }) => {
-                //   if (id !== note.id) {
-                //     return note;
-                //   }
+                //   if (id !== note.id) return note;
                 // });
+
+                // A shorter way to filter out deleted note
+                const updatedNotes = notes.filter(({ id }) => id !== note.id);
+
+                setNotes([...updatedNotes]);
               }
             }}
             key={note.id}
